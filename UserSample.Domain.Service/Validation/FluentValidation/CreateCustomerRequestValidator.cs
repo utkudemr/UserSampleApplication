@@ -10,6 +10,7 @@ namespace UserSample.Domain.Service.Validation.FluentValidation
             RuleFor(x => x.Name).NotEmpty().NotNull();
             RuleFor(x => x.Surname).NotEmpty().NotNull();
             RuleFor(x => x.BirthDate).GreaterThan(DateTime.MinValue);
+            RuleFor(x => x.TCKNumber).Must(x =>  x.ToString().Length == 11); ;
         }
     }
 }

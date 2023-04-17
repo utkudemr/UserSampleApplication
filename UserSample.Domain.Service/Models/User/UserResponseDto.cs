@@ -6,16 +6,8 @@ using System.Threading.Tasks;
 
 namespace UserSample.Domain.Service.Models.User
 {
-    public class CreateUserRequestDto
+    public class UserResponseDto
     {
-        public CreateUserRequestDto(long tCKNumber, string name, string surname, DateTime birthDate)
-        {
-            TCKNumber = tCKNumber;
-            Name = name;
-            Surname = surname;
-            BirthDate = birthDate;
-        }
-
         public long TCKNumber { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserSample.Domain.Service.Models.User
+namespace UserSample.Data.Service.Entities
 {
-    public class CreateUserRequestDto
+    public class User
     {
-        public CreateUserRequestDto(long tCKNumber, string name, string surname, DateTime birthDate)
+        public User(long tCKNNumber, string name, string surname, DateTime birthDate)
         {
-            TCKNumber = tCKNumber;
+            TCKNNumber = tCKNNumber;
             Name = name;
             Surname = surname;
             BirthDate = birthDate;
         }
 
-        public long TCKNumber { get; set; }
+        public long TCKNNumber { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime BirthDate { get; set; }
