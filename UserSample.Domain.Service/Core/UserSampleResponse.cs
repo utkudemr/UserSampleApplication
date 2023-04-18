@@ -15,6 +15,12 @@ namespace UserSample.Domain.Service.Core
             IsSuccess = isSuccess;
         }
 
+        public UserSampleResponse(string message, bool isSuccess)
+        {
+            Message = message;
+            IsSuccess = isSuccess;
+        }
+
         public UserSampleResponse(T data,  bool isSuccess)
         {
             Data = data;

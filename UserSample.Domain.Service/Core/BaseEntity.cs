@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace UserSample.Domain.Service.Core
 {
-    public class BaseEntity<T>
+    public abstract class BaseEntity<T>:IEntity<T> 
     {
         public T Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+    }
+
+    public interface IEntity<T>
+    {
+        T Id { get; }
     }
 }

@@ -29,6 +29,7 @@ namespace UserSample.Business.Service.Concretes
                 }
 
                 var mappedUser = _mapper.Map<CreateUserRequestDto, User>(user);
+                mappedUser.CreatedDate = DateTime.Now;
                 return new UserSampleResponse<bool>(data: false, isSuccess: validationResult.IsValid);
             }
             catch (Exception ex)
