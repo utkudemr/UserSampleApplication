@@ -28,6 +28,8 @@ namespace UserSampleApplication.Controllers
         [HttpGet(Name = "GetCustomerById")]
         public async Task<IActionResult> GetCustomerById([FromQuery] Guid id)
         {
+            _logger.LogInformation("GetCustomerById tetiklenmiþtir1. {@request}", new CreateUserRequestDto(tCKNumber:11111111111,name:"utku",surname:"demir",birthDate:DateTime.Now));
+
             var result = await _getCustomerService.GetUserById(id);
             return Ok(result);
         }

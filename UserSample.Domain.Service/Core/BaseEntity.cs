@@ -11,10 +11,12 @@ namespace UserSample.Domain.Service.Core
         public T Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public bool IsActive { get; set; }
     }
 
     public interface IEntity<T>
     {
         T Id { get; }
+        bool IsActive { get; set; }
     }
 }
