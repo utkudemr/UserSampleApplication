@@ -7,8 +7,8 @@ using UserSample.Domain.Service.Core;
 
 namespace UserSample.Data.Service.Entities
 {
-    public class User:  BaseEntity<Guid>, IEntity<Guid>
-    { 
+    public class User: Entity<Guid>
+    {
         public long TCKNumber { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
