@@ -30,15 +30,14 @@ namespace UserSample.Business.Service.Concretes
         {
             try
             {
-
-                _logger.LogInformation("CreateCustomerAsync request request {user}", user);
+                _logger.LogInformation("CreateCustomerAsync request request request: {@User}", user);
                 var userRequestValidator = new CreateCustomerRequestValidator();
                 var validationResult = userRequestValidator.Validate(user);
                 if (!validationResult.IsValid)
                 {
                     var errorMessage = validationResult.ErrorMessage();
-                    _logger.LogWarning("CreateCustomerAsync request not valid {errorMessage}", errorMessage);
-                    return new UserSampleResponse<bool>(data: false, isSuccess: validationResult.IsValid,message: errorMessage);
+                    _logger.LogWarning("CreateCustomerAsync request not valid {@ErrorMessage}", errorMessage);
+                    return new UserSampleResponse<bool>(data: false, isSuccess: validationResult.IsValid, message: errorMessage);
                 }
 
                 var response = await _userIntegrationService.UserIsExist(user);
@@ -47,18 +46,18 @@ namespace UserSample.Business.Service.Concretes
                     var mappedUser = _mapper.Map<CreateUserRequestDto, User>(user);
                     mappedUser.IsActive = true;
                     mappedUser.CreatedDate = DateTime.Now;
-                     _context.Users.Add(mappedUser);
+                    _context.Users.Add(mappedUser);
                     await _context.SaveChangesAsync();
                     return new UserSampleResponse<bool>(data: false, isSuccess: validationResult.IsValid);
                 }
                 _logger.LogWarning("CreateCustomerAsync user is not exist with this TCKN number");
-                return new UserSampleResponse<bool>(data: false, isSuccess: false,message:"KPS Service not approved");
+                return new UserSampleResponse<bool>(data: false, isSuccess: false, message: "KPS Service not approved");
 
             }
             catch (Exception ex)
             {
-                _logger.LogError("CAn error occured error message: :{ex.Message}", ex.Message);
-                return new UserSampleResponse<bool>(data: false, isSuccess: false,message:$"An error occured error message:{ex.Message}");
+                _logger.LogError(ex,"An error occured error message: :{@ErrorMessage}", ex.Message);
+                return new UserSampleResponse<bool>(data: false, isSuccess: false, message: $"An error occured error message:{ex.Message}");
             }
         }
     }

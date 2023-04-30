@@ -9,7 +9,7 @@ namespace UserSample.Domain.Service.Helpers
 
         public static string MaskDate(this string value)
         {
-            string result = Regex.Replace(value, @"(.+?)/(.+?)/", "##/##/");
+            string result = Regex.Replace(value, @"(.+?)/(.+?)/", "**/**/");
             return result;
         }
 

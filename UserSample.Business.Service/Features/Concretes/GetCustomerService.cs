@@ -42,7 +42,7 @@ namespace UserSample.Business.Service.Concretes
             }
             catch (Exception ex)
             {
-                _logger.LogError("An error occured while user retrieving id: {id}",id);
+                _logger.LogError(ex,"An error occured while user retrieving id: {id}",id);
                 return new UserSampleResponse<UserResponseDto>(message:$"An error occured while user retrieving message:{ex.Message}", isSuccess: false);
             }
            

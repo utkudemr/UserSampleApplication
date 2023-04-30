@@ -26,7 +26,7 @@ namespace UserSample.Business.Service.Concretes
         {
             try
             {
-                _logger.LogInformation("GetCustomerListFilterService {request}", request);
+                _logger.LogInformation("GetCustomerListFilterService {@Request}", request);
 
                 var tcknNumber=request.TCKNNumber.ToString();
                 var query = from u in _context.Users
@@ -40,7 +40,7 @@ namespace UserSample.Business.Service.Concretes
                     query = query.Where(u => u.Surname.Contains(request.Surname));
                 if (!string.IsNullOrEmpty(tcknNumber))
                     query = query.Where(u => u.TCKNumber.ToString().Contains(tcknNumber));
-                // Build the results at the end
+
                 var results = query.Select(u => new UserResponseDto
                 {
                     Name = u.Name.MaskName(),
@@ -50,12 +50,12 @@ namespace UserSample.Business.Service.Concretes
 
                 }).ToList();
 
-                _logger.LogInformation("User list filtered retrieved successfully {request}", request);
+                _logger.LogInformation("User list filtered retrieved successfully {@Request}", request);
                 return new UserSampleResponse<List<UserResponseDto>>(data: results, isSuccess: true);
             }
             catch (Exception ex)
             {
-                _logger.LogError("An error occured while user retrieving {request}", request);
+                _logger.LogError(ex,"An error occured while user retrieving {@Request}", request);
                 return new UserSampleResponse<List<UserResponseDto>>(message:$"An error occured while user retrieving message:{ex.Message}", isSuccess: false);
             }
            
